@@ -24,15 +24,17 @@ carController.getCars = async (req, res, next) => {
 
     let offset = limit * (page - 1);
     let cars = await Car.find({});
-    console.log(limit);
-    console.log(cars.length);
+    // console.log(limit);
+    // console.log(cars.length);
     let total;
     total = Math.ceil(cars.length / limit);
     cars = cars.slice(offset, offset + limit);
     //total page
 
-    console.log(total);
-    res.status(200).json({ data: { cars, total } });
+    // console.log(total);
+    res
+      .status(200)
+      .json({ data: { message: "Get Car List Successfully!", cars, total } });
   } catch (err) {
     // YOUR CODE HERE
     next(err);
@@ -50,7 +52,7 @@ carController.editCar = async (req, res, next) => {
     if (!car) {
       return next(createCustomError(`No car with id: ${carID}`, 404));
     }
-    res.status(200).json({ car });
+    res.status(200).json({ message: "Update Car Successfully!", car });
   } catch (err) {
     // YOUR CODE HERE
     next(err);
@@ -69,7 +71,7 @@ carController.deleteCar = async (req, res, next) => {
     if (!car) {
       return next(createCustomError(`No car with id: ${carID}`, 404));
     }
-    res.status(200).json({ car });
+    res.status(200).json({ message: "Delete Car Successfully!", car });
   } catch (err) {
     // YOUR CODE HERE
     next(err);

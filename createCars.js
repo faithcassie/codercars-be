@@ -4,15 +4,13 @@ const axios = require("axios");
 const Car = require("./models/Car");
 const { MongoClient } = require("mongodb");
 
+const URL = process.env.MONGO_URI;
 const results = [];
 let collection;
-const client = new MongoClient(
-  "mongodb+srv://myAtlasDBUser:5l4SQkDSOUWLV1gT@myatlasclusteredu.s8cxdik.mongodb.net/codercars",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+const client = new MongoClient(URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 try {
   client.connect();
   const db = client.db("codercars");
